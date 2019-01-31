@@ -4,11 +4,10 @@ version: 0.1
 phases:
   install:
     commands:
-      - pip install requests
+      - pip3 install requests
   pre_build:
     commands:
       - echo "Python version"
-      - python --version
       - python3 --version
       - echo "Get latest version of Hashicorp packer using hashicorp-get tooling"
       - wget https://raw.githubusercontent.com/brian-provenzano/hashicorp-get/master/hashicorp-get.py

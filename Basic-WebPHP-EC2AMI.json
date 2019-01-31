@@ -28,11 +28,19 @@
         "BuildDate": "{{timestamp}}"
   }
   }],
+
   "provisioners": [
     {
-      "type": "shell",
-      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo '{{ .Path }}'",
-      "script": "deploy-bootstrap.sh"
+        "type": "shell",
+        "inline": [
+            "sudo yum update -y",
+            "sudo /usr/sbin/update-motd --disable",
+            "echo 'No unauthorized access permitted' | sudo tee /etc/motd",
+            "sudo rm /etc/issue",
+            "sudo ln -s /etc/motd /etc/issue",
+            "sudo yum install -y elinks screen"
+        ]
     }
-  ]
+]
+
 }

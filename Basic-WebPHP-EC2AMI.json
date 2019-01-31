@@ -9,15 +9,7 @@
     "instance_type": "t3.micro",
     "ssh_username": "ec2-user",
     "ami_name": "{{user `aws_aminame`}}-AMZNLinux1-{{timestamp}}",
-    "source_ami_filter": {
-      "filters": {
-          "virtualization-type": "hvm",
-          "name": "amzn-ami*-ebs",
-          "root-device-type": "ebs"
-      },
-      "owners": ["137112412989", "591542846629", "801119661308", "102837901569", "013907871322", "206029621532", "286198878708", "443319210888"],
-      "most_recent": true
-  },
+    "source_ami" : "ami-01e24be29428c15b2",
     "ami_description": "PHP/Node Web server : AmazonLinux : php71, nodejs, npm, drush, composer",
       "tags": {
         "Name": "{{user `aws_aminame`}}-AMZNLinux1",
@@ -28,19 +20,12 @@
         "BuildDate": "{{timestamp}}"
   }
   }],
-
   "provisioners": [
     {
-        "type": "shell",
-        "inline": [
-            "sudo yum update -y",
-            "sudo /usr/sbin/update-motd --disable",
-            "echo 'No unauthorized access permitted' | sudo tee /etc/motd",
-            "sudo rm /etc/issue",
-            "sudo ln -s /etc/motd /etc/issue",
-            "sudo yum install -y elinks screen"
-        ]
+      "type": "shell",
+      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo '{{ .Path }}'",
+      "script": "deploy-bootstrap.sh"
     }
-]
+  ]
 
 }

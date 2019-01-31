@@ -3,7 +3,8 @@ version: 0.1
 
 phases:
   install:
-    - pip install requests
+    commands:
+      - pip install requests
   pre_build:
     commands:
       - echo "Python version"

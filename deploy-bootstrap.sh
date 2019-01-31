@@ -10,7 +10,7 @@
 # Author:
 #
 
-yum install httpd24 \
+yum install openssh-clients gihttpd24 \
     php71 php71-mbstring php71-gd php71-xml php71-pear \
     php71-fpm php71-mysql php71-pdo php71-opcache \
     make gcc-c++ gcc patch glibc-devel \

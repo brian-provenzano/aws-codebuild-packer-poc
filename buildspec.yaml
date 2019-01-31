@@ -12,7 +12,7 @@ phases:
       - pwd
       - echo "Get latest version of Hashicorp packer using hashicorp-get tooling"
       - wget https://raw.githubusercontent.com/brian-provenzano/hashicorp-get/master/hashicorp-get.py
-      - chmod +x hashicorp-get.py && python3 ./hashicorp-get.py packer latest -q -y .
+      - chmod +x hashicorp-get.py && python3 ./hashicorp-get.py packer latest -q -y $(pwd)
       # - echo "Installing jq..."
       # - curl -qL -o jq https://stedolan.github.io/jq/download/linux64/jq && chmod +x ./jq
       - echo "Validating Basic-WebPHP-EC2AMI.json"

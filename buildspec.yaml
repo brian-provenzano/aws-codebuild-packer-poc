@@ -11,6 +11,7 @@ phases:
       - python3 --version
       - pwd
       - PACKER_INSTALL_LOCATION="$(pwd)/"
+      - echo $PACKER_INSTALL_LOCATION
       - echo "Get latest version of Hashicorp packer using hashicorp-get tooling"
       - wget https://raw.githubusercontent.com/brian-provenzano/hashicorp-get/master/hashicorp-get.py
       - chmod +x hashicorp-get.py && python3 ./hashicorp-get.py packer latest -q -y $PACKER_INSTALL_LOCATION

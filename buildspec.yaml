@@ -7,7 +7,7 @@ phases:
   install:
     commands:
       - pip3 install requests
-      - apt-get install openssh-client
+      - curl -qL -o jq https://stedolan.github.io/jq/download/linux64/jq && chmod +x ./jq
   pre_build:
     commands:
       - cat /etc/os-release

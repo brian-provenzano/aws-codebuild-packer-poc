@@ -1,21 +1,21 @@
 ---
 version: 0.1
 
-# use with AWS canned python 3.6.x container
+# use with custom alpine docker image in the ecr
 
 phases:
-  install:
-    commands:
-      - pip3 install requests
-      - curl -qL -o jq https://stedolan.github.io/jq/download/linux64/jq && chmod +x ./jq
+  # install:
+  #   commands:
+  #     - pip3 install requests
+  #     - curl -qL -o jq https://stedolan.github.io/jq/download/linux64/jq && chmod +x ./jq
   pre_build:
     commands:
-      - cat /etc/os-release
-      - PACKER_INSTALL_LOCATION="$(pwd)/"
-      - echo "--------------------------------"
-      - echo "Get latest version of Hashicorp packer using hashicorp-get helper tooling"
-      - wget https://raw.githubusercontent.com/brian-provenzano/hashicorp-get/master/hashicorp-get.py
-      - chmod +x hashicorp-get.py && python3 ./hashicorp-get.py packer latest -q -y "$PACKER_INSTALL_LOCATION"
+      #- cat /etc/os-release
+      # - PACKER_INSTALL_LOCATION="$(pwd)/"
+      # - echo "--------------------------------"
+      # - echo "Get latest version of Hashicorp packer using hashicorp-get helper tooling"
+      # - wget https://raw.githubusercontent.com/brian-provenzano/hashicorp-get/master/hashicorp-get.py
+      # - chmod +x hashicorp-get.py && python3 ./hashicorp-get.py packer latest -q -y "$PACKER_INSTALL_LOCATION"
       - echo "Validating Basic-WebPHP-EC2AMI.json for format"
       - ./packer validate Basic-WebPHP-EC2AMI.json
   build:

@@ -24,3 +24,5 @@ phases:
   post_build:
     commands:
       - echo "HashiCorp Packer build completed on `date`"
+      - echo "Current Images:"
+      - aws ec2 describe-images --executable-users self

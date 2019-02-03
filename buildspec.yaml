@@ -13,10 +13,7 @@ phases:
       - cat /etc/os-release
       - PACKER_INSTALL_LOCATION="$(pwd)/"
       #hack for now to create script to postprocess grab ami_name for latest use
-      - echo "export NEW_AMI=$(./jq -r '.builds[].artifact_id' manifest.json | cut -d':' -f2)" >> get-ami.sh
-      - echo "From Packer post processor - the AMI created ${NEW_AMI}" >> get-ami.sh
-      - echo "Capturing AMI in ami.txt locally..." >> get-ami.sh
-      - echo -n "$NEW_AMI > ami.txt" >> get-ami.sh
+      - tee get-ami.sh << EOF export NEW_AMI=$(./jq -r '.builds[].artifact_id' manifest.json | cut -d':' -f2); "$NEW_AMI > ami.txt" EOF
       - PACKER_POSTPROCESS=get-ami.sh
       - echo $PACKER_POSTPROCESS
       - cat get-ami.sh

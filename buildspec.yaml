@@ -12,21 +12,16 @@ phases:
     commands:
       - cat /etc/os-release
       - PACKER_INSTALL_LOCATION="$(pwd)/"
-      #hack for now to create script to postprocess grab ami_name for latest use
-      - tee get-ami.sh << EOF export NEW_AMI=$(./jq -r '.builds[].artifact_id' manifest.json | cut -d':' -f2); "$NEW_AMI > ami.txt" EOF
-      - PACKER_POSTPROCESS=get-ami.sh
-      - echo $PACKER_POSTPROCESS
-      - cat get-ami.sh
       - echo "--------------------------------"
       - echo "Get latest version of Hashicorp packer using hashicorp-get helper tooling"
       - wget https://raw.githubusercontent.com/brian-provenzano/hashicorp-get/master/hashicorp-get.py
       - chmod +x hashicorp-get.py && python3 ./hashicorp-get.py packer latest -q -y "$PACKER_INSTALL_LOCATION"
       - echo "Validating Basic-WebPHP-EC2AMI.json for format"
-      - ./packer validate -var 'postscript=${PACKER_POSTPROCESS}' Basic-WebPHP-EC2AMI.json
+      - ./packer validate Basic-WebPHP-EC2AMI.json
   build:
     commands:
       - echo "Building HashiCorp Packer template, amazon-linux_packer-template.json"
-      - ./packer build -var 'postscript=${PACKER_POSTPROCESS}' Basic-WebPHP-EC2AMI.json
+      - ./packer build Basic-WebPHP-EC2AMI.json
   post_build:
     commands:
       - echo "HashiCorp Packer build completed on `date`"

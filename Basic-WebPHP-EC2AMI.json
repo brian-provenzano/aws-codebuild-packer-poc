@@ -36,8 +36,10 @@
     {
       "type": "shell-local",
       "inline": [
+        "echo 'the AMI using qa extraction:'",
         "export NEW_AMI=$(./jq -r '.builds[].artifact_id' manifest.json | cut -d':' -f2)",
-        "$NEW_AMI > ami.txt"
+        "echo 'AMI from the env:' $NEW_AMI"
+        "echo $NEW_AMI > ami.txt"
       
       ]
     }

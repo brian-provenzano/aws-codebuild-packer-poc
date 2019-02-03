@@ -12,7 +12,7 @@
     "source_ami" : "ami-01e24be29428c15b2",
     "ami_description": "PHP/Node Web server : AmazonLinux : php71, nodejs, npm, drush, composer",
       "tags": {
-        "Name": "{{user `aws_aminame`}}-AMZNLinux1",
+        "Name": "{{user `aws_region`}}-AMZNLinux1",
         "OS_Version": "amazonlinux1",
         "Applications": "nodejs,npm,php,gulp,composer,drush",
         "NodeJSVersion": "10.x",
@@ -26,6 +26,17 @@
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo '{{ .Path }}'",
       "script": "deploy-bootstrap.sh"
     }
-  ]
+  ],
+  "post-processors": [
+    {
+      "type": "manifest",
+      "output": "manifest.json",
+      "strip_path": true
+    },
+    {
+      "type": "shell-local",
+      "script": "{{user `postscript`}}"
+    }
+]
 
 }

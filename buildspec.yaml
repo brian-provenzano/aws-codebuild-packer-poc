@@ -26,6 +26,6 @@ phases:
     commands:
       - echo "HashiCorp Packer build completed on `date`"
       - echo "Image Created:"
-      - aws ec2 describe-images --image-ids $(cat ami.txt)
+      - cat ami.txt
 
       

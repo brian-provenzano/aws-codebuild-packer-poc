@@ -6,7 +6,8 @@ version: 0.1
 phases:
   pre_build:
     commands:
-      - PACKER_POSTPROCESS=get-ami.sh
+      - export PACKER_POSTPROCESS=get-ami.sh
+      - echo $PACKER_POSTPROCESS
       - echo "Validating Basic-WebPHP-EC2AMI.json for format"
       - packer validate -var 'postscript=${PACKER_POSTPROCESS}' Basic-WebPHP-EC2AMI.json
   build:

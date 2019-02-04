@@ -16,7 +16,7 @@ phases:
   post_build:
     commands:
       - echo "HashiCorp Packer build completed on `date`"
-      - echo "ID of AMI Created -  $(cat ami.txt)"
-      #- aws ec2 describe-images --image-ids $(cat ami.txt | tr -d \'[:space:]\')
+      - echo "ID of AMI Created -  $(cat /bin/ami.txt)"
+      #- aws ec2 describe-images --image-ids $(cat /bin/ami.txt | tr -d \'[:space:]\')
       - echo "TODO - cleanup old AMIs (x many versions); delete snapshots associated with old AMI (already have this in my personal repo)"
   

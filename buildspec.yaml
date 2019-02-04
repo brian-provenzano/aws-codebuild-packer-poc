@@ -11,6 +11,8 @@ phases:
       - packer validate -var 'postscript=/bin/get-ami.sh' Basic-WebPHP-EC2AMI.json
   build:
     commands:
+      - echo $(cat /bin/get-ami.sh)
+      - echo $(ls -al /bin/get-ami.sh)
       - echo "Building HashiCorp Packer template, amazon-linux_packer-template.json"
       - packer build -var 'postscript=/bin/get-ami.sh' Basic-WebPHP-EC2AMI.json
   post_build:

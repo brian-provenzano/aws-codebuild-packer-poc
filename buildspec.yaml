@@ -11,15 +11,12 @@ phases:
       - packer validate -var 'postscript=/bin/get-ami.sh' Basic-WebPHP-EC2AMI.json
   build:
     commands:
-      - echo $(cat /bin/get-ami.sh)
-      - echo $(ls -al /bin/get-ami.sh)
       - echo "Building HashiCorp Packer template, amazon-linux_packer-template.json"
       - packer build -var 'postscript=/bin/get-ami.sh' Basic-WebPHP-EC2AMI.json
   post_build:
     commands:
       - echo "HashiCorp Packer build completed on `date`"
       - echo "ID of AMI Created -  $(cat ami.txt)"
-      - echo $(cat ami.txt | tr -d \'[:space:]\')
-      - aws ec2 describe-images --image-ids $(cat ami.txt | tr -d \'[:space:]\')
+      #- aws ec2 describe-images --image-ids $(cat ami.txt | tr -d \'[:space:]\')
       - echo "TODO - cleanup old AMIs (x many versions); delete snapshots associated with old AMI (already have this in my personal repo)"
   

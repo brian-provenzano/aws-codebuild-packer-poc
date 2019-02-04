@@ -17,6 +17,7 @@
         "Applications": "nodejs,npm,php,gulp,composer,drush",
         "NodeJSVersion": "10.x",
         "Purpose": "web",
+        "Environment": "dev",
         "BuildDate": "{{timestamp}}"
   }
   }],

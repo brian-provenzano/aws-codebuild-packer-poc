@@ -3,7 +3,6 @@ version: 0.1
 
 # use with custom alpine docker image in the ecr
 
-
 phases:
   pre_build:
     commands:

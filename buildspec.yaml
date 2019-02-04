@@ -20,6 +20,6 @@ phases:
       - echo "HashiCorp Packer build completed on `date`"
       - echo "ID of AMI Created -  $(cat ami.txt)"
       - echo $(cat ami.txt | tr -d \'[:space:]\')
-      #- aws ec2 describe-images --image-ids $(cat ami.txt | tr -d \'[:space:]\')
+      - aws ec2 describe-images --image-ids $(cat ami.txt | tr -d \'[:space:]\')
       - echo "TODO - cleanup old AMIs (x many versions); delete snapshots associated with old AMI (already have this in my personal repo)"
   

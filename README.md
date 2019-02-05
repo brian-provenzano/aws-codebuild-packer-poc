@@ -32,7 +32,7 @@ More examples here in AWS CLI documentation:
 
 
 ### Extended Note
-This is mainly a recreation of my [jenkins-pipeline-immut](https://github.com/brian-provenzano/jenkins-pipeline-immut) project using aws codebuild/pipeline.  Learning tool POC mostly.  The AWS codebuild/pipeline was created manually in the AWS console.  Although currently without IaC provisioning that the jenkins repo contains (using terrafrom) which is a TODO for this project/repo.
+This is mainly a re-creation of my [jenkins-pipeline-immut](https://github.com/brian-provenzano/jenkins-pipeline-immut) project using aws codebuild/pipeline.  Learning tool POC mostly.  The AWS codebuild/pipeline was created manually in the AWS console.  Although currently without IaC provisioning that the jenkins repo contains (using terrafrom) which is a TODO for this project/repo.
 
 ### TODO
 - Cloudformation or Terraform to:

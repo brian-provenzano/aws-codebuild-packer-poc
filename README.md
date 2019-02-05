@@ -8,8 +8,8 @@ Quick and dirty project for using AWS codebuild/pipeline for CI / build of a cus
     - [config bootstrap script](https://github.com/brian-provenzano/aws-codebuild-packer-poc/blob/master/deploy-bootstrap.sh) (optionally you can use ansible or another config mgmt tool)
     - [buildspec.yaml - AWS codebuild](https://github.com/brian-provenzano/aws-codebuild-packer-poc/blob/master/buildspec.yaml)
 - This container for the build container [aws-codebuild-alpine-container](https://github.com/brian-provenzano/aws-codebuild-alpine-container)
-- This [json skel]() for the codebuild project details the config
-- This [json skel]() for the aws pipeline details the config
+- This [json skel](https://github.com/brian-provenzano/aws-codebuild-packer-poc/blob/master/build_ami.codebuild.project.aws-cli.json) for the codebuild project details the config
+- This [json skel](https://github.com/brian-provenzano/aws-codebuild-packer-poc/blob/master/build_ami_pipeline.codepipeline.project.aws-cli.json) for the aws pipeline details the config
 
 Note: You can reuse the json referenced above and in this repo as a template, but you will have to adjust for your aws acct and environment.  Use in conjunciton with the following aws cli commands:
 

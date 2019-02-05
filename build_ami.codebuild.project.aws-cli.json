@@ -1,0 +1,50 @@
+{
+    "project": {
+        "name": "Build_AMI",
+        "arn": "arn:aws:codebuild:us-west-2:680991002562:project/Build_AMI",
+        "description": "Build PHP app AMI labtest",
+        "source": {
+            "type": "GITHUB",
+            "location": "https://github.com/brian-provenzano/aws-codebuild-packer-poc",
+            "gitCloneDepth": 1,
+            "reportBuildStatus": false,
+            "insecureSsl": false
+        },
+        "secondarySources": [],
+        "artifacts": {
+            "type": "NO_ARTIFACTS"
+        },
+        "secondaryArtifacts": [],
+        "cache": {
+            "type": "NO_CACHE"
+        },
+        "environment": {
+            "type": "LINUX_CONTAINER",
+            "image": "680991002562.dkr.ecr.us-west-2.amazonaws.com/brian-provenzano:2.4",
+            "computeType": "BUILD_GENERAL1_SMALL",
+            "environmentVariables": [],
+            "privilegedMode": false
+        },
+        "serviceRole": "arn:aws:iam::680991002562:role/service-role/brianprovenzano-testlab-codebuild-Build-AMI-service-role",
+        "timeoutInMinutes": 60,
+        "queuedTimeoutInMinutes": 480,
+        "encryptionKey": "redacted",
+        "tags": [],
+        "created": 1548956710.612,
+        "lastModified": 1549386684.995,
+        "badge": {
+            "badgeEnabled": true,
+            "badgeRequestUrl": "https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiUkx2NVZPeklJTW4xUGxHbmpRMkFHZm0rTlJYNWV2N3FSeng4ZHpCeEZZUFlGME1VenlqcWVvSXBEZ0RVZmFXTDZiMlNld2liRHE0ZkFFM0Y0bGlIVHgwPSIsIml2UGFyYW1ldGVyU3BlYyI6IlA1RE5UZDZGS1VMSkJ4SkQiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master"
+        },
+        "logsConfig": {
+            "cloudWatchLogs": {
+                "status": "ENABLED",
+                "groupName": "BuildAMI",
+                "streamName": "BuildAMI"
+            },
+            "s3Logs": {
+                "status": "DISABLED"
+            }
+        }
+    }
+}

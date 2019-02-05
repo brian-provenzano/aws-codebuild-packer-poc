@@ -1,0 +1,74 @@
+{
+    "pipeline": {
+        "name": "BuildAMI_Pipeline_Test",
+        "roleArn": "arn:aws:iam::680991002562:role/service-role/AWSCodePipelineServiceRole-us-west-2-BuildAMI_Pipeline_Test",
+        "artifactStore": {
+            "type": "S3",
+            "location": "codepipeline-us-west-2-548815517690"
+        },
+        "stages": [
+            {
+                "name": "Source",
+                "actions": [
+                    {
+                        "name": "Source",
+                        "actionTypeId": {
+                            "category": "Source",
+                            "owner": "ThirdParty",
+                            "provider": "GitHub",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "Branch": "master",
+                            "OAuthToken": "****",
+                            "Owner": "brian-provenzano",
+                            "PollForSourceChanges": "false",
+                            "Repo": "aws-codebuild-packer-poc"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "SourceArtifact"
+                            }
+                        ],
+                        "inputArtifacts": []
+                    }
+                ]
+            },
+            {
+                "name": "Build",
+                "actions": [
+                    {
+                        "name": "Build",
+                        "actionTypeId": {
+                            "category": "Build",
+                            "owner": "AWS",
+                            "provider": "CodeBuild",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "ProjectName": "Build_AMI"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "BuildArtifact"
+                            }
+                        ],
+                        "inputArtifacts": [
+                            {
+                                "name": "SourceArtifact"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "version": 1
+    },
+    "metadata": {
+        "pipelineArn": "arn:aws:codepipeline:us-west-2:680991002562:BuildAMI_Pipeline_Test",
+        "created": 1549158571.611,
+        "updated": 1549158571.611
+    }
+}

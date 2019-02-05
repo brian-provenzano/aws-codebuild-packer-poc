@@ -1,7 +1,11 @@
 ---
 version: 0.1
 
-# use with custom alpine docker image in the ecr
+# 
+# Build PHP web server custom AMI
+# 
+# Should be used with https://github.com/brian-provenzano/aws-codebuild-alpine-container as the build environment
+#
 
 phases:
   pre_build:
@@ -15,10 +19,10 @@ phases:
       - packer build -var 'postscript=/bin/get-ami.sh' Basic-WebPHP-EC2AMI.json
   post_build:
     commands:
-      - echo "HashiCorp Packer build completed on `date`"
+      - echo "HashiCorp Packer build completed on $(date)"
       - echo "ID of AMI Created -  $(cat /root/ami.txt)"
       - aws ec2 describe-images --image-ids $(cat /root/ami.txt | tr -d \'[:space:]\')
-      - echo "All customer current AMIs "
+      - echo "All current custom web AMIs "
       - aws ec2 describe-images --owners self --filters 'Name=tag:Purpose,Values=web'
       - echo "Cleanup old AMIs and snapshots "
       - cleanup-ami.sh

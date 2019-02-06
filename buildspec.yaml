@@ -11,7 +11,7 @@ phases:
   pre_build:
     commands:
       - POSTPROCESS_AMI=/bin/get-ami.sh
-      - BULD
+      - BUILD_ROOT=/root
       - echo "Validating Basic-WebPHP-EC2AMI.json for format"
       - packer validate -var 'postscript=${POSTPROCESS_AMI}' Basic-WebPHP-EC2AMI.json
   build:
@@ -21,8 +21,8 @@ phases:
   post_build:
     commands:
       - echo "HashiCorp Packer build completed on $(date)"
-      - echo "ID of AMI Created -  $(cat /root/ami.txt)"
-      - aws ec2 describe-images --image-ids $(cat /root/ami.txt | tr -d \'[:space:]\')
+      - echo "ID of AMI Created -  $(cat ${POSTPROCESS_AMI}/ami.txt)"
+      - aws ec2 describe-images --image-ids $(cat ${POSTPROCESS_AMI}/ami.txt | tr -d \'[:space:]\')
       - echo "All current custom web AMIs "
       - aws ec2 describe-images --owners self --filters 'Name=tag:Purpose,Values=web'
       - echo "Cleanup old AMIs and snapshots "

@@ -34,11 +34,6 @@ php composer-setup.php
 php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 
-# echo $PATH
-# echo "add the /usr/local/bin to root's PATH so we can exec composer"
-# echo "export PATH=$PATH:/usr/local/bin" >> .bashrc
-# export PATH=$PATH:/usr/local/bin
-# echo "new path: $PATH"
 echo "run composer and grab drush"
 /usr/local/bin/composer global require drush/drush
 
